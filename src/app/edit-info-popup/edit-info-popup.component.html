@@ -1,0 +1,54 @@
+<p>edit-info-popup works!</p>
+<div class="container">
+    <div class="col-xl-12 formdesign">
+        <form [formGroup]="editPopUpForm" novalidate>
+            <div class="col-md-6">
+                <label class="form-label">Name</label>
+                <input type="text" formControlName="name" placeholder="Name">
+                <div
+                    *ngIf="editPopUpForm.controls['name'].invalid && (editPopUpForm.controls['name'].touched || editPopUpForm.controls['name'].dirty)">
+                    <div *ngIf="editPopUpForm.controls['name'].errors?.required">
+                        <span style="color: red; font-size: 16px;">
+                            Name Can Not be Blank</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input type="text" formControlNmae="email" placeholder="Email">
+                <div
+                    *ngIf="editPopUpForm.controls['email'].invalid && (editPopUpForm.controls['email'].touched || editPopUpForm.controls['email'].dirty)">
+                    <div *ngIf="editPopUpForm.controls['email'].errors?.required">
+                        <span style="color: red; font-size: 16px;">
+                            Email Can Not Be Blank.
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Phone Number</label>
+                <input type="number" formControlName="PhoneNumber" placeholder="Phone Number">
+                <!-- <div *ngIf="editPopUpForm.controls['PhoneNumber'].invalid && (editPopUpForm.controls['PhoneNumber'].dirty || editPopUpForm.controls['PhoneNumber'].touched">
+                 <div *ngIf="editPopUpForm.controls['PhoneNumber'].errors?.required">
+                     <span style="color: red; font-size: 16px;">
+                        Phone number Can Not Be
+
+                     </span>
+                    </div>
+                 </div> -->
+                 
+
+            </div>
+            <button type="button" (click)="UpdateInfo()">update</button>
+        </form>
+    </div>
+    <!-- <div class="col-md-6">
+                <button type="submit" (click)="UpdateInfo()">Update</button>
+
+            </div> -->
+
+
+
+</div>

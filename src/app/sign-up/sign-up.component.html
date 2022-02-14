@@ -1,0 +1,60 @@
+
+<div class="col col-xl-12">
+  <div class="alert alert-success text-center mercury">
+    Hello welcome to Sign Up page
+  </div>
+</div>
+<div class="container">
+  <div class="col-xl-12 formdesign ">
+    <form [formGroup]="signUpForm" novalidate>
+      <div class="col-md-6">
+        <label class="form-label">Email address</label>
+        <input type="email" formControlName="email" class="form-control" placeholder="name@example.com">
+        <div
+          *ngIf="signUpForm.controls['email'].invalid && (signUpForm.controls['email'].dirty) || signUpForm.controls['email'].touched">
+          <div *ngIf="signUpForm.controls['email'].errors?.required">
+            <span style="color: red; font-size: 16px;">Email address Can Not be Blank</span>
+          </div>
+          <div *ngIf="signUpForm.controls['email'].errors?.pattern">
+            <span style="color: red;font-size: 16px;">Enter Valid Email</span>
+ </div>
+   </div>
+      </div>
+      <div class="col-md-6 mt-0 ">
+        <label class="form-label">Password</label>
+        <input type="password" minlength="5" formControlName="password" class="form-control" placeholder="*********">
+        <div
+          *ngIf="signUpForm.controls['password'].invalid && (signUpForm.controls['password'].touched || signUpForm.controls['password'].dirty)">
+       <!-- <div *ngIf="signUpForm.controls['password'].errors?.maxLength">
+            <span style="color: red;font-size: 16px;"> The password requied 10 characters.</span>
+          </div> -->
+           <div *ngIf="signUpForm.controls['password'].errors?.required">
+            <span style="color: red;font-size: 16px;"> Password Can Not be Blank</span>
+          </div> 
+          <!-- <div *ngIf="signUpForm.controls['password'].errors?.minLength">
+            <span style="color: red;font-size: 16px;"> The password requied mininum 3 characters.</span>
+          </div> -->
+          
+       </div>
+      </div>
+      <div class="col-md-6 mt-0 " >
+        <label class="form-label"> Confirm Password</label>
+        <input type="password" formControlName="ConfirmPassword" class="form-control" placeholder="*********">
+        <div
+          *ngIf="signUpForm.controls['ConfirmPassword'].invalid && (signUpForm.controls['ConfirmPassword'].dirty || signUpForm.controls['ConfirmPassword'].touched)">
+          <div *ngIf="signUpForm.controls['ConfirmPassword'].errors?.required">
+            <span style="color: red;font-size: 16px;">Confirm Password Can Not be Blank</span>
+          </div>
+          <div *ngIf="signUpForm.controls['ConfirmPassword'].errors?.confirmedValidator">
+            <span style="color: red;font-size: 16px;">Password and Confirm Password must be match.</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 mt-0 align-items-center">
+        <button class="btn btn-primary" (click)="signUp()">Sign UP</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+

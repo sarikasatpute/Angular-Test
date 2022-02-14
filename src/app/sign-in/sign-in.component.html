@@ -1,0 +1,47 @@
+<div class="col col-xl-12">
+    <div class="alert alert-success text-center">
+      Hello welcome
+  </div>
+  <div class="container">
+    <div class="col-xl-12 formdesign ">
+      <form [formGroup]="loginForm" novalidate>
+        <div class="col-md-6">
+          <label class="form-label">Email address</label>
+          <input type="email" formControlName="email" class="form-control" placeholder="name@example.com">
+          <div
+            *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty) || loginForm.controls['email'].touched">
+            <div *ngIf="loginForm.controls['email'].errors?.required">
+              <span style="color: red; font-size: 16px;">Email address Can Not be Blank</span>
+            </div>
+            <div *ngIf="loginForm.controls['email'].errors?.pattern">
+              <span style="color: red;font-size: 16px;">Enter Valid Email</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mt-0 ">
+          <label class="form-label">Password</label>
+          <input type="password" minlength="5" formControlName="password" class="form-control" placeholder="*********">
+          <div
+            *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].touched || loginForm.controls['password'].dirty)">
+            <!-- <div *ngIf="loginForm.controls['password'].errors?.maxLength">
+              <span style="color: red;font-size: 16px;"> The password requied 10 characters.</span>
+            </div> -->
+            <div *ngIf="loginForm.controls['password'].errors?.required">
+              <span style="color: red;font-size: 16px;"> Password Can Not be Blank</span>
+            </div>
+            <!-- <div *ngIf="loginForm.controls['password'].errors?.minLength">
+              <span style="color: red;font-size: 16px;"> The password requied mininum 3 characters.</span>
+            </div> -->
+            
+          </div>
+        </div>
+           <div class="col-md-5 mt-0">
+          <label style="color: blue;" (click)="forNewUser()">New User Sign Up here</label>
+        </div>
+        <div class="col-md-5 mt-0 align-items-center">
+          <button class="btn btn-primary" (click)="login()">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
