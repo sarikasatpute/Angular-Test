@@ -15,13 +15,10 @@ const routes: Routes = [
     component: SignUPComponent
   },
   {
-    path: 'app-contact-list',
+    path: 'contact-list',
     component: ContactListComponent
-  },
-  {
-    path:'app-edit-info-popup',
-    component:EditInfoPopupComponent
   }
+
 ];
 
 @NgModule({

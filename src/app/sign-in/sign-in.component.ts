@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { sqlite } from 'websql-orm';
+import { Users } from '../database/user';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,25 +10,40 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  itemprice = [{
-    id: 1,
-    name: 'tea',
-    price: 10
-  }, {
-    id: 2,
-    name: 'coffe',
-    price: 15
-  }, {
-    id: 3,
-    name: 'black tea',
-    price: 5
-  }];
+  users: any;
+  localStorageSet: any;
   loginForm: FormGroup = new FormGroup({});
   constructor(private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router) {
+  }
   ngOnInit() {
     this.loginFormBuilder();
-    this.test();
+  }
+  async saveUser() {
+    let user = new Users();
+    user.save();
+  }
+
+  async autheticateUser() {
+    let email = this.loginForm.value.email;
+    let password = this.loginForm.value.password;
+    let users = await sqlite.fromSqlFirst(new Users(), "select * from users where email ='" + email + "' and password ='" + password + "'", []);
+
+    if (users?.id) {
+      localStorage.setItem("currentUser", users.id.toString())
+      this.router.navigate(['contact-list']);
+      alert("Sign In successfully!");
+    } else {
+      localStorage.removeItem("currentUser")
+      // show error
+      alert("Login Fail!");
+    }
+  }
+  login() {
+    this.loginForm.markAllAsTouched();
+    if (this.loginForm.valid) {
+       this.autheticateUser();
+    }
   }
   loginFormBuilder() {
     this.loginForm = this.formBuilder.group({
@@ -34,61 +51,8 @@ export class SignInComponent implements OnInit {
       password: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(3)]],
       ConfirmPassword: [''],
     })
-
-  }
-
-  login() {
-    this.loginForm.markAllAsTouched();
-    if (this.loginForm.valid) {
-      alert("hi")
-      this.router.navigate(['/app-contact-list']);
-    }
   }
   forNewUser() {
     this.router.navigate(['/sign-up']);
   }
-
-
-
-  // var item = [{
-  // 	id: 1,
-  // 	name: 'tea',
-  // 	price: 10
-  // },{
-  // 	id: 2,
-  // 	name: 'coffe',
-  // 	price: 15
-  // },{
-  // 	id: 3,
-  // 	name: 'black tea',
-  // 	price: 5
-  // }];
-
-
-  test() {
-    var sum = 0;
-    // for (let i = 0; i <= this.item.length; i++) {
-    //   sum += parseInt(this.item[i], 10 );
-
-    // }
-
-    // for (var shirt of this.item) {
-    //   console.log(shirt.price,"price");
-    //   for(let i=0;i<shirt.price;i++){
-    //     sum +=shirt.price;
-    //   }
-    //   console.log(sum,"sum");
-
-    // }
-  //   this.itemprice.forEach(item => {
-  //     sum += item.price;
-  //   })
-  //   console.log(sum,"sum");
-    
-  // }
-  this.itemprice.forEach(item=>{
-sum+=item.price;
-  })
-  console.log(sum,"sum")
-}
 }

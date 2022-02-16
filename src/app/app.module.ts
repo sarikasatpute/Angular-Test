@@ -8,6 +8,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUPComponent } from './sign-up/sign-up.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { EditInfoPopupComponent } from './edit-info-popup/edit-info-popup.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EditInfoPopupComponent } from './edit-info-popup/edit-info-popup.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

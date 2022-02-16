@@ -1,54 +1,52 @@
-<p>edit-info-popup works!</p>
-<div class="container">
-    <div class="col-xl-12 formdesign">
-        <form [formGroup]="editPopUpForm" novalidate>
-            <div class="col-md-6">
-                <label class="form-label">Name</label>
-                <input type="text" formControlName="name" placeholder="Name">
-                <div
-                    *ngIf="editPopUpForm.controls['name'].invalid && (editPopUpForm.controls['name'].touched || editPopUpForm.controls['name'].dirty)">
-                    <div *ngIf="editPopUpForm.controls['name'].errors?.required">
-                        <span style="color: red; font-size: 16px;">
-                            Name Can Not be Blank</span>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-6">
-                <label class="form-label">Email</label>
-                <input type="text" formControlNmae="email" placeholder="Email">
-                <div
-                    *ngIf="editPopUpForm.controls['email'].invalid && (editPopUpForm.controls['email'].touched || editPopUpForm.controls['email'].dirty)">
-                    <div *ngIf="editPopUpForm.controls['email'].errors?.required">
-                        <span style="color: red; font-size: 16px;">
-                            Email Can Not Be Blank.
-                        </span>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-6">
-                <label class="form-label">Phone Number</label>
-                <input type="number" formControlName="PhoneNumber" placeholder="Phone Number">
-                <!-- <div *ngIf="editPopUpForm.controls['PhoneNumber'].invalid && (editPopUpForm.controls['PhoneNumber'].dirty || editPopUpForm.controls['PhoneNumber'].touched">
-                 <div *ngIf="editPopUpForm.controls['PhoneNumber'].errors?.required">
-                     <span style="color: red; font-size: 16px;">
-                        Phone number Can Not Be
-
-                     </span>
-                    </div>
-                 </div> -->
-                 
-
-            </div>
-            <button type="button" (click)="UpdateInfo()">update</button>
-        </form>
+<form [formGroup]="editPopUpForm" novalidate>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add New User</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-    <!-- <div class="col-md-6">
-                <button type="submit" (click)="UpdateInfo()">Update</button>
-
-            </div> -->
-
-
-
-</div>
+    <div class="modal-body">
+        <div class="list-view pt-3" [style]="'max-height: ' + height + 'px !important'">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Name &nbsp;</label>
+                    <input type="text" formControlName="name" placeholder="Name">
+                    <div
+                        *ngIf="editPopUpForm.controls['name'].invalid && (editPopUpForm.controls['name'].touched || editPopUpForm.controls['name'].dirty)">
+                        <div *ngIf="editPopUpForm.controls['name'].errors?.required">
+                            <span style="color: red; font-size: 16px;">
+                                Name Can Not be Blank</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Email &nbsp;</label>
+                    <input type="text" formControlName="email" placeholder="email">
+                    <div
+                        *ngIf="editPopUpForm.controls['email'].invalid && (editPopUpForm.controls['email'].touched || editPopUpForm.controls['email'].dirty)">
+                        <div *ngIf="editPopUpForm.controls['email'].errors?.required">
+                            <span style="color: red; font-size: 16px;">
+                                Email Can Not be Blank</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mt-5">
+                    <label class="form-label">Phone Number &nbsp;</label>
+                    <input type="number" formControlName="PhoneNumber" placeholder="Phone Number">
+                    <div *ngIf="editPopUpForm.controls['PhoneNumber'].invalid && (editPopUpForm.controls['PhoneNumber'].touched || editPopUpForm.controls['PhoneNumber'].dirty)">
+                        <div *ngIf="editPopUpForm.controls['PhoneNumber'].errors?.required">
+                            <span style="color: red; font-size: 16px;">Phone Number Can not be Blank</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-5">
+                    <input type="file" id="myFile" name="filename" (change)="onFileChange($event)">
+                </div>
+            </div>
+            <div>&nbsp;</div>
+            <button type="button" (click)="UpdateInfo()" class="btn btn-primary">update</button>
+        </div>
+    </div>
+</form>
